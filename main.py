@@ -1,16 +1,33 @@
-# This is a sample Python script.
+n = int(input())
+arr = []
+for i in range(n):
+    val = int(input())
+    arr.append(val)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+total = arr[0]
+visited = [0]*n
+
+step = 0
+count = 0
+
+#연속된 세 계단을 더해선 안된다
+while(step+2 < n-1):
+
+    if count == 2:
+        step += 1
+        count = 0
+        continue
+
+    if arr[step+2] > arr[step+1]:
+        total += arr[step+2]
+        step += 2
+    else:
+        total += arr[step+1]
+        step += 1
+
+    count +=1
+    print(step, total)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+total +=arr[n-1]
+print(total)
